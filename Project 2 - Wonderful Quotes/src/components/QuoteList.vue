@@ -27,5 +27,6 @@
         margin: 2px;
         float: left;
         overflow-wrap: break-word;
+        white-space: pre;
     }
 </style>

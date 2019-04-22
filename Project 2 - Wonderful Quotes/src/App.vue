@@ -1,7 +1,8 @@
 <template>
     <div class="container">
         <quote-amount-bar :number-of-quotes="quotes.length"></quote-amount-bar>
-        <quote-input @add-quote="addQuote"></quote-input>
+        <p></p>
+        <quote-input v-model="quote" @add-quote="addQuote"></quote-input>
         <quote-list :quotes="quotes" @quote-clicked="removeQuote"></quote-list>
         <div class="footer">
             <p>Info: Click on a quote to delete it!</p>
@@ -17,7 +18,8 @@
     export default {
         data() {
             return {
-                quotes: []
+                quote: "",
+                quotes: [],
             }
         },
         components: {
@@ -26,9 +28,10 @@
             QuoteInput
         },
         methods: {
-            addQuote(quote) {
+            addQuote() {
                 if (this.quotes.length < 10) {
-                    this.quotes.push(quote);
+                    this.quotes.push(this.quote);
+                    this.quote = "";
                 } else {
                     alert("Can not add more than 10 quotes");
                 }

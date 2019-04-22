@@ -1,22 +1,21 @@
 <template>
     <div>
-        <textarea v-model="quote" placeholder="add quote here..."></textarea>
+        <textarea :value="value" @input="$emit('input', $event.target.value)" placeholder="add quote here..."></textarea>
         <br>
-        <button @click="addQuote()">Add Quote</button>
+        <button @click="$emit('add-quote')">Add Quote</button>
     </div>
 </template>
 
 <script>
     export default {
         name: "QuoteInput.vue",
-        data() {
-            return {
-                quote: ""
-            }
+        props: {
+            value: String
         },
         methods: {
             addQuote() {
-                this.$emit("add-quote", this.quote);
+                let quote = this.$refs.quote.textContent;
+                this.$emit("input", quote);
             }
         }
     }
